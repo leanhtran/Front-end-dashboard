@@ -1,0 +1,30 @@
+.dashboard-table {
+  font-size: 13px !important;
+  .status-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .dropdown .dropdown-toggle {
+      padding: 0px;
+      height: 20px;
+      width: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 10px;
+    }
+  }
+  tr {
+    td, th {
+      padding: 1rem 0.2rem;
+    }
+  }
+  thead {
+    background-color: #E5E5E5;
+  }
+  tbody {
+    tr:nth-child(even) {
+      background-color: #F2F2F2;
+    }
+  }
+}

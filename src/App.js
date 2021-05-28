@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import DashboardScreen from './screen/dashboard/DashboardScreen';
+import './App.scss';
 
 function App() {
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route 
+          exact 
+          path="/" 
+          render={() => {
+            return (isUserAuthenticated
+              ? <Redirect to="/dashboard" />
+              : <Redirect to="/login" />)}}
+        />
+        <Route exact path="/dashboard" component={DashboardScreen} />
+        <Route exact path="/login" component={DashboardScreen} />
+      </Switch>
+    </Router>
   );
 }
 
