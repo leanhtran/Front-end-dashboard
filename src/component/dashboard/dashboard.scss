@@ -1,7 +1,11 @@
 .dashboard-table {
+  width: 3000px !important;
   font-size: 13px !important;
-  .status-cell {
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  .thead-status-cell {
     display: flex;
+    flex: 1;
     flex-direction: row;
     align-items: center;
     .dropdown .dropdown-toggle {
@@ -15,16 +19,39 @@
     }
   }
   tr {
-    td, th {
-      padding: 1rem 0.2rem;
+    td {
+      padding: 0px;
+      height: 60px;
+      width: 200px !important;
+      vertical-align: middle;
+      padding-left: 0.7rem;
+    }
+    th {
+      padding: 0px;
+      width: 200px !important
     }
   }
   thead {
     background-color: #E5E5E5;
+    th div.thead-cell, div.thead-status-cell {
+      display: flex;
+      flex: 1;
+      border-right: 1px solid #BBC0C4;
+      width: 100%;
+      padding: 1rem 0.7rem;
+      margin-left: 1px;
+    }
   }
   tbody {
+    tr td {
+      border-right: 1px solid #BBC0C4;
+    }
     tr:nth-child(even) {
       background-color: #F2F2F2;
     }
   }
+}
+
+.text-700 {
+  font-weight: 700;
 }
