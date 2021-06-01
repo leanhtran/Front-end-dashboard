@@ -14,78 +14,134 @@ const initialData = [
 ];
 
 const listStatusOptions = [
+  {label: 'All', value: 'ALL', type: 'STATUS'},
   {label: 'Active', value: 'ACTICE', type: 'STATUS'},
   {label: 'Not Active', value: 'NOT_ACTICE', type: 'STATUS'},
 ];
 
 const listKYCStatusOptions = [
+  {label: 'All', value: 'ALL', type: 'KYC_STATUS'},
   {label: 'Approved', value: 'APPROVED', type: 'KYC_STATUS'},
   {label: 'Needs Approval', value: 'NEEDS_APPROVAL', type: 'KYC_STATUS'},
 ];
 
 const listTransferConfOptions = [
+  {label: 'All', value: 'ALL', type: 'TRANSFER_CONF'},
   {label: 'Sent', value: 'SENT', type: 'TRANSFER_CONF'},
-  {label: 'Not Sent', value: 'NOT_SENT', type: 'TRANSFER_CONF'},
+  {label: 'Not sent', value: 'NOT_SENT', type: 'TRANSFER_CONF'},
   {label: 'Bounced', value: 'BOUNCED', type: 'TRANSFER_CONF'},
 ];
 
 const listPaidBackOptions = [
+  {label: 'All', value: 'ALL', type: 'PAID_BACK'},
   {label: 'In progress', value: 'IN_PROGRESS', type: 'PAID_BACK'},
   {label: 'NSF', value: 'NSF', type: 'PAID_BACK'},
   {label: 'Loan due today', value: 'LOAN_DUE_TODAY', type: 'PAID_BACK'},
 ];
 
 const listFundsOptions = [
+  {label: 'All', value: 'ALL', type: 'FUNDS'},
   {label: 'Yes', value: 'YES', type: 'FUNDS'},
   {label: 'No', value: 'NO', type: 'FUNDS'},
 ];
 
-function DashboardScreen() {
+function DashboardScreen(props) {
+  const {
+    history
+  } = props;
+  console.log('props', props);
   const [data, setData] = useState(initialData);
   const [initData, setInitData] = useState(initialData);
-  const [statusOptions, setStatusOptions] = useState('');
-  const [KYCStatusOptions, setKYCStatusOptions] = useState('');
-  const [transferConfOptions, setTransferConfOptions] = useState('');
-  const [paidBackOptions, setPaidBackOptions] = useState('');
-  const [fundsOptions, setFundsOptions] = useState('');
+  const [statusOptions, setStatusOptions] = useState('All');
+  const [KYCStatusOptions, setKYCStatusOptions] = useState('All');
+  const [transferConfOptions, setTransferConfOptions] = useState('All');
+  const [paidBackOptions, setPaidBackOptions] = useState('All');
+  const [fundsOptions, setFundsOptions] = useState('All');
   
+  const handleFilterData = (params) => {
+    const newInitData = initData;
+    const keys = [];
+    for (let key in params) {
+      if (params[key] !== 'All') {
+        keys.push(key);
+      }
+    };
+    if(keys.length === 0) {
+      setData(initialData);
+    } else {
+      const result = [];
+      newInitData.forEach(item => {
+        let countEqual = 0;
+        keys.forEach(key => {
+          if (params[key] === item[key]) {
+            countEqual += 1;
+            if (countEqual === keys.length) {
+              result.push(item);
+            }
+          }
+        })
+      });
+      setData(result);
+    }
+  }
+
   const onFillterData = (type, value) => {
-    const newInitData = [...initData];
+    const initParams = {
+      status: statusOptions,
+      kycStatus: KYCStatusOptions,
+      transfer: transferConfOptions,
+      paidBack: paidBackOptions,
+      funds: fundsOptions,
+    }
     switch (type) {
       case 'STATUS':
-        setStatusOptions(value);
         const labelStatus = listStatusOptions.find(item => item.value === value).label;
-        const dataFiltered1 = newInitData.filter(item => item.status === labelStatus);
-        setData(dataFiltered1);
+        setStatusOptions(labelStatus);
+        const paramsFilter1 = {
+          ...initParams,
+          status: labelStatus,
+        }
+        handleFilterData(paramsFilter1);
       break;
       case 'KYC_STATUS':
-        setKYCStatusOptions(value);
         const labelKYC = listKYCStatusOptions.find(item => item.value === value).label;
-        const dataFiltered2 = newInitData.filter(item => item.kycStatus === labelKYC);
-        setData(dataFiltered2);
+        setKYCStatusOptions(labelKYC);
+        const paramsFilter2 = {
+          ...initParams,
+          kycStatus: labelKYC,
+        }
+        handleFilterData(paramsFilter2);
         break;
       case 'TRANSFER_CONF':
-        setTransferConfOptions(value);
         const labelTransfer = listTransferConfOptions.find(item => item.value === value).label;
-        const dataFiltered3 = newInitData.filter(item => item.transfer === labelTransfer);
-        setData(dataFiltered3);
+        setTransferConfOptions(labelTransfer);
+        const paramsFilter3 = {
+          ...initParams,
+          transfer: labelTransfer,
+        }
+        handleFilterData(paramsFilter3);
         break;
       case 'PAID_BACK':
-        setPaidBackOptions(value);
         const labelPaidBack = listPaidBackOptions.find(item => item.value === value).label;
-        const dataFiltered4 = newInitData.filter(item => item.paidBack === labelPaidBack);
-        setData(dataFiltered4);
+        setPaidBackOptions(labelPaidBack);
+        const paramsFilter4 = {
+          ...initParams,
+          paidBack: labelPaidBack,
+        }
+        handleFilterData(paramsFilter4);
         break;
       case 'FUNDS':
-        setFundsOptions(value);
         const labelFunds = listFundsOptions.find(item => item.value === value).label;
-        const dataFiltered5 = newInitData.filter(item => item.funds === labelFunds);
-        setData(dataFiltered5);
+        setFundsOptions(labelFunds);
+        const paramsFilter5 = {
+          ...initParams,
+          funds: labelFunds,
+        }
+        handleFilterData(paramsFilter5);
         break;
       default:
         break;
     }
-    console.log('value', value);
   };
 
   return (
@@ -102,6 +158,7 @@ function DashboardScreen() {
       transferConfOptions={transferConfOptions}
       paidBackOptions={paidBackOptions}
       fundsOptions={fundsOptions}
+      history={history}
     />
   )
 }

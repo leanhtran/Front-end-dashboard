@@ -1,3 +1,7 @@
+.text-700 {
+  font-weight: 700;
+}
+
 .dashboard-table {
   width: 3000px !important;
   font-size: 13px !important;
@@ -25,6 +29,7 @@
       width: 200px !important;
       vertical-align: middle;
       padding-left: 0.7rem;
+      padding-right: 0.7rem;
     }
     th {
       padding: 0px;
@@ -45,13 +50,54 @@
   tbody {
     tr td {
       border-right: 1px solid #BBC0C4;
+      div.review-button u {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
     tr:nth-child(even) {
       background-color: #F2F2F2;
     }
+    .client-cell {
+      display: flex;
+      align-items: center;
+      .client-name {
+        font-size: 14px;
+      }
+      .view-detail {
+        margin-left: auto;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
 
-.text-700 {
-  font-weight: 700;
+.KYC-modal {
+  .face-kyc-container {
+    text-align: center;
+    .img-kyc {
+      width: auto;
+      height: 200px;
+      max-width: 200px;
+    }
+  }
+  .id-kyc-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .img-kyc {
+    max-width: 90%;
+    width: auto;
+    height: 130px;
+  }
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+  }
 }

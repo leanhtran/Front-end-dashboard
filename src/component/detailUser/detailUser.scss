@@ -1,0 +1,82 @@
+.header-detail-user {
+  display: flex;
+  justify-content: space-between;
+  .header-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button {
+      margin-top: 0.7rem;
+    }
+  }
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .username {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-left: 0.8rem;
+  }
+}
+
+.transaction-table {
+  font-size: 13px !important;
+  margin-top: 2rem;
+  .thead-status-cell {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+  }
+  tr {
+    td {
+      padding: 0px;
+      height: 60px;
+      width: 200px !important;
+      vertical-align: middle;
+      padding-left: 0.7rem;
+      padding-right: 0.7rem;
+    }
+    th {
+      padding: 0px;
+      width: 200px !important
+    }
+  }
+  thead {
+    background-color: #E5E5E5;
+    th div.thead-cell, div.thead-status-cell {
+      display: flex;
+      flex: 1;
+      border-right: 1px solid #BBC0C4;
+      width: 100%;
+      padding: 1rem 0.7rem;
+      margin-left: 1px;
+    }
+    tr th:last-child div {
+      border-right: 0px !important;
+    }
+  }
+  tbody {
+    tr td {
+      border-right: 1px solid #BBC0C4;
+      div.review-button u {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    tr:nth-child(even) {
+      background-color: #F2F2F2;
+    }
+    tr td:last-child {
+      border-right: 0px !important;
+    }
+  }
+}
+
+.vertical {
+  border-left: 2px solid lightgray;
+  height: 5px;
+  margin: 0px 10px;
+}

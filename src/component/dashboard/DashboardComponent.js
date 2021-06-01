@@ -2,10 +2,12 @@ import React from 'react'
 import './dashboard.scss'
 import DropdownOption from './DropdownOption';
 import {Button} from 'react-bootstrap'
-import ExportExel from './common/ExportExel';
+import ExportExel from '../common/ExportExel';
+import KYCCellComponent from './KYCCellComponent';
 
 function DashboardComponent(props) {
   const {
+    history,
     data,
     listStatusOptions,
     listTransferConfOptions,
@@ -14,13 +16,6 @@ function DashboardComponent(props) {
     listFundsOptions,
     onFillterData,
   } = props;
-
-  const renderColorKYCStatus = (status) => {
-    if (status.toUpperCase() === 'APPROVED') {
-      return 'text-success';
-    }
-    return 'text-danger';
-  };
 
   const renderColorTransferStatus = (status) => {
     if (status.toUpperCase() === 'SENT') {
@@ -119,13 +114,20 @@ function DashboardComponent(props) {
           {data.map((item, index) => (
             <tr key={index.toString()}>
               <td>{item.userId}</td>
-              <td>{item.client}</td>
+              <td>
+                <div className="client-cell">
+                  <span className="client-name"><b>{item.client}</b></span>
+                  <i onClick={() => history.push(`/user:${item.userId}`)} className="fas fa-arrow-right view-detail"></i>
+                </div>
+              </td>
               <td>
                 <div>{item.dateJoined.slice(6)}</div>
                 <div>{item.dateJoined.slice(0,5)}</div>
               </td>
               <td className={`${item.status.toUpperCase() === 'ACTIVE' ? 'text-success' : 'text-danger'} text-700`}>{item.status}</td>
-              <td className={`${renderColorKYCStatus(item.kycStatus)} text-700`}>{item.kycStatus}</td>
+              <td>
+                <KYCCellComponent KYCitem={item} />
+              </td>
               <td className={`${renderColorTransferStatus(item.transfer)} text-700`}>{item.transfer}</td>
               <td>{item.startDate}</td>
               <td>{item.maturityDate}</td>
