@@ -7,6 +7,12 @@
     align-items: center;
     button {
       margin-top: 0.7rem;
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
   .avatar {
@@ -17,6 +23,26 @@
     font-weight: 600;
     font-size: 1.2rem;
     margin-left: 0.8rem;
+  }
+}
+
+.info-row {
+  margin-top: 10px;
+  .info-cell {
+    border-right: 2px lightgray solid;
+    padding: 0 1rem;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    div {
+      line-height: 1rem;
+      letter-spacing: 0.5px;
+    }
+    .info-label {
+      font-size: 11px;
+      color: gray;
+    }
   }
 }
 
@@ -77,6 +103,6 @@
 
 .vertical {
   border-left: 2px solid lightgray;
-  height: 5px;
+  height: 20px;
   margin: 0px 10px;
 }

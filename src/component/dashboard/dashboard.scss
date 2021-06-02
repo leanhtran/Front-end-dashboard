@@ -1,12 +1,29 @@
+.dashboard-container {
+  .header-dashboard {
+    height: 6rem;
+    width: 100%;
+    top: 0;
+    background-color: #417690;
+    color: white;
+    padding: 1rem;
+    h2 {
+      margin: 0px !important;
+    }
+  }
+}
+
+
 .text-700 {
   font-weight: 700;
 }
 
 .dashboard-table {
+  margin-top: 7rem;
   width: 3000px !important;
   font-size: 13px !important;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
+  .user-id-col {
+    width: 6rem !important;
+  }
   .thead-status-cell {
     display: flex;
     flex: 1;
@@ -46,8 +63,14 @@
       padding: 1rem 0.7rem;
       margin-left: 1px;
     }
+    tr th:last-child div {
+      border-right: 0px !important;
+    }
   }
   tbody {
+    tr td:last-child {
+      border-right: 0px !important;
+    }
     tr td {
       border-right: 1px solid #BBC0C4;
       div.review-button u {
@@ -65,8 +88,11 @@
       .client-name {
         font-size: 14px;
       }
-      .view-detail {
+      .detail-button {
         margin-left: auto;
+        padding: 0.7rem;
+        margin-right: -0.7rem;
+        // background-color: red;
         &:hover {
           cursor: pointer;
         }

@@ -1,43 +1,25 @@
 import React, { Fragment, useState } from 'react'
-import {Modal, Button, Image, Form} from 'react-bootstrap'
+import {Modal, Button, Image} from 'react-bootstrap'
 import defaultImage from '../../assets/images/default-image.jpg';
 import defaultKYCId from '../../assets/images/default-kyc-id.jpg';
 
-
-function KYCCellComponent(props) {
+function KYCComponent(props) {
   const {
-    KYCitem,
+    userData
   } = props;
   const [isShowReviewKYC, setIsShowReviewKYC] = useState(false);
-  const [isReject, setIsReject] = useState(false);
 
   const onReviewKYC = () => {
     setIsShowReviewKYC(true);
-  }
+  };
 
   const onCloseReviewKYC = () => {
     setIsShowReviewKYC(false);
-    setIsReject(false);
-  }
-
-  const onCancelReject = () => {
-    setIsReject(false);
-  }
-
-  const onRejectKYC = () => {
-    if (isReject) {
-      onCloseReviewKYC();
-    } else {
-      setIsReject(true);
-    }
-  }
-
-  const isKYCStatusApproved = () => KYCitem.kycStatus.toUpperCase() === 'APPROVED';
+  };
 
   return (
     <Fragment>
-      <div className={`${isKYCStatusApproved() ? 'text-success' : 'text-danger'} text-700`}>{KYCitem.kycStatus}</div>
-      {!isKYCStatusApproved(KYCitem.kycStatus) && <div className="review-button text-primary"><u onClick={onReviewKYC}>Review</u></div>}
+      <Button onClick={onReviewKYC} className="ml-2" variant="primary">KYC verification</Button>
 
       <Modal
         className="KYC-modal"
@@ -71,22 +53,14 @@ function KYCCellComponent(props) {
               </div>
             </div>
           </div>
-
-          {isReject && <div className="mt-4">
-            <Form.Label>Reason</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-          </div>}
         </Modal.Body>
-
-
-        <div className="footer">
-          {isReject && <Button onClick={onCancelReject} variant="secondary" className="mr-2">Cancel</Button>}
-          <Button onClick={onRejectKYC} variant="danger">Reject</Button>
-          {!isReject && <Button onClick={onCloseReviewKYC} className="ml-2" variant="primary">Approve</Button>}
-        </div>
+        {!userData.kycStatus && <div className="footer">
+          <Button onClick={onCloseReviewKYC} variant="danger">Reject</Button>
+          <Button onClick={onCloseReviewKYC} className="ml-2" variant="primary">Approve</Button>
+        </div>}
       </Modal>
     </Fragment>
   )
 }
 
-export default KYCCellComponent
+export default KYCComponent

@@ -49,7 +49,7 @@ function DashboardScreen(props) {
   const {
     history
   } = props;
-  console.log('props', props);
+
   const [data, setData] = useState(initialData);
   const [initData, setInitData] = useState(initialData);
   const [statusOptions, setStatusOptions] = useState('All');
