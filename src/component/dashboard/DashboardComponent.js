@@ -20,6 +20,7 @@ function DashboardComponent(props) {
     listPaidBackOptions,
     listFundsOptions,
     onFillterData,
+    listOGOptions,
   } = props;
 
   const renderColorTransferStatus = (status) => {
@@ -114,6 +115,16 @@ function DashboardComponent(props) {
                   />
                 </div>
               </th>
+              <th scope="col">
+                <div className="thead-status-cell">
+                  OG
+                  <DropdownOption
+                    onChangeOption={onFillterData}
+                    options={listOGOptions}
+                  />
+                </div>
+              </th>
+              <th scope="col"><div className="thead-cell">Referrer</div></th>
             </tr>
           </thead>
           <tbody>
@@ -149,6 +160,8 @@ function DashboardComponent(props) {
                 <td>{item.total}</td>
                 <td className={`${renderColorPaidBackStatus(item.paidBack)} text-700`}>{item.paidBack}</td>
                 <td className={`${renderColorStatus(item.funds)} text-700`}>{item.funds}</td>
+                <td>{item.OG}</td>
+                <td>{item.referrer}</td>
               </tr>
             ))}
           </tbody>

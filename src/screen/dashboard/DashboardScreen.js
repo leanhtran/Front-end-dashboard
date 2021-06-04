@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import DashboardComponent from '../../component/dashboard/DashboardComponent'
 
 const initialData = [
-  {userId: '128', client: 'John Frost', dateJoined: '09:25 15th July 2021', status: 'Not Active', kycStatus: 'Needs Approval', transfer: 'Sent', startDate: 'May 9th 2021', maturityDate: 'May 16th 2021', duration: '1 Week', amountCAD: '80', tip: '3', total: '83', paidBack: 'In progress', funds: 'Yes'},
-  {userId: '149', client: 'Michael Jordan', dateJoined: '15:14 18th July 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Not Sent', startDate: 'May 7th 2021', maturityDate: 'May 21st 2021', duration: '2 Weeks', amountCAD: '60', tip: '2', total: '62', paidBack: 'NSF', funds: 'No'},
-  {userId: '187', client: 'Eugene Longfield', dateJoined: '19:32 20th March 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Bounced', startDate: 'May 6th 2021', maturityDate: 'May 27th 2021', duration: '3 Weeks', amountCAD: '30', tip: '3', total: '33', paidBack: 'Loan due today', funds: 'Yes'},
-  {userId: '137', client: 'Chris Staffer', dateJoined: '16:37 14th April 2021', status: 'Not Active', kycStatus: 'Needs Approval', transfer: 'Not sent', startDate: 'May 5th 2021', maturityDate: 'May 13th 2021', duration: '1 Week', amountCAD: '40', tip: '2', total: '42', paidBack: 'Loan due today', funds: 'No'},
-  {userId: '124', client: 'Jonah Berger', dateJoined: '15:12 12th April 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 2nd 2021', maturityDate: 'May 30th 2021', duration: '4 Weeks', amountCAD: '60', tip: '4', total: '64', paidBack: 'Loan due today', funds: 'Yes'},
-  {userId: '193', client: 'Sam Raqluette', dateJoined: '14:52 12th April', status: 'Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 3rd 2021', maturityDate: 'May 24th 2021', duration: '3 Weeks', amountCAD: '70', tip: '2', total: '72', paidBack: 'Loan due today', funds: 'No'},
-  {userId: '195', client: 'Tommy Jackson', dateJoined: '13:42 10th April 2021', status: 'Active', kycStatus: 'Needs Approval', transfer: 'Not sent', startDate: 'May 4th 2021', maturityDate: 'May 18th 2021', duration: '2 Weeks', amountCAD: '40', tip: '5', total: '45', paidBack: 'In progress', funds: 'Yes'},
-  {userId: '173', client: 'Daniel Schwartz', dateJoined: '12:54 9th May 2021', status: 'Not Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 8th 2021', maturityDate: 'June 10th 2021', duration: '4 Weeks', amountCAD: '50', tip: '6', total: '56', paidBack: 'In progress', funds: 'Yes'},
-  {userId: '164', client: 'Sam Broden', dateJoined: '11:57 10th May 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 5th 2021', maturityDate: 'May 26th 2021', duration: '3 Weeks', amountCAD: '50', tip: '2', total: '52', paidBack: 'NSF', funds: 'No'},
+  {userId: '128', client: 'John Frost', dateJoined: '09:25 15th July 2021', status: 'Not Active', kycStatus: 'Needs Approval', transfer: 'Sent', startDate: 'May 9th 2021', maturityDate: 'May 16th 2021', duration: '1 Week', amountCAD: '80', tip: '3', total: '83', paidBack: 'In progress', funds: 'Yes', OG: 'OG 1', referrer: 'Daniel'},
+  {userId: '149', client: 'Michael Jordan', dateJoined: '15:14 18th July 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Not Sent', startDate: 'May 7th 2021', maturityDate: 'May 21st 2021', duration: '2 Weeks', amountCAD: '60', tip: '2', total: '62', paidBack: 'NSF', funds: 'No', OG: 'OG 2', referrer: 'Daniel'},
+  {userId: '187', client: 'Eugene Longfield', dateJoined: '19:32 20th March 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Bounced', startDate: 'May 6th 2021', maturityDate: 'May 27th 2021', duration: '3 Weeks', amountCAD: '30', tip: '3', total: '33', paidBack: 'Loan due today', funds: 'Yes', OG: 'OG 3', referrer: 'Alberto'},
+  {userId: '137', client: 'Chris Staffer', dateJoined: '16:37 14th April 2021', status: 'Not Active', kycStatus: 'Needs Approval', transfer: 'Not sent', startDate: 'May 5th 2021', maturityDate: 'May 13th 2021', duration: '1 Week', amountCAD: '40', tip: '2', total: '42', paidBack: 'Loan due today', funds: 'No', OG: 'OG 3', referrer: 'Daniel'},
+  {userId: '124', client: 'Jonah Berger', dateJoined: '15:12 12th April 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 2nd 2021', maturityDate: 'May 30th 2021', duration: '4 Weeks', amountCAD: '60', tip: '4', total: '64', paidBack: 'Loan due today', funds: 'Yes', OG: 'OG 2', referrer: 'Alberto'},
+  {userId: '193', client: 'Sam Raqluette', dateJoined: '14:52 12th April', status: 'Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 3rd 2021', maturityDate: 'May 24th 2021', duration: '3 Weeks', amountCAD: '70', tip: '2', total: '72', paidBack: 'Loan due today', funds: 'No', OG: 'OG 1', referrer: 'Alberto'},
+  {userId: '195', client: 'Tommy Jackson', dateJoined: '13:42 10th April 2021', status: 'Active', kycStatus: 'Needs Approval', transfer: 'Not sent', startDate: 'May 4th 2021', maturityDate: 'May 18th 2021', duration: '2 Weeks', amountCAD: '40', tip: '5', total: '45', paidBack: 'In progress', funds: 'Yes', OG: 'OG 3', referrer: 'Alberto'},
+  {userId: '173', client: 'Daniel Schwartz', dateJoined: '12:54 9th May 2021', status: 'Not Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 8th 2021', maturityDate: 'June 10th 2021', duration: '4 Weeks', amountCAD: '50', tip: '6', total: '56', paidBack: 'In progress', funds: 'Yes', OG: 'OG 2', referrer: 'Alberto'},
+  {userId: '164', client: 'Sam Broden', dateJoined: '11:57 10th May 2021', status: 'Active', kycStatus: 'Approved', transfer: 'Sent', startDate: 'May 5th 2021', maturityDate: 'May 26th 2021', duration: '3 Weeks', amountCAD: '50', tip: '2', total: '52', paidBack: 'NSF', funds: 'No', OG: 'OG 1', referrer: 'Daniel'},
 ];
 
 const listStatusOptions = [
@@ -45,6 +45,13 @@ const listFundsOptions = [
   {label: 'No', value: 'NO', type: 'FUNDS'},
 ];
 
+const listOGOptions = [
+  {label: 'All', value: 'ALL', type: 'OG'},
+  {label: 'OG 1', value: 'OG_1', type: 'OG'},
+  {label: 'OG 2', value: 'OG_2', type: 'OG'},
+  {label: 'OG 3', value: 'OG_3', type: 'OG'},
+];
+
 function DashboardScreen(props) {
   const {
     history
@@ -57,6 +64,7 @@ function DashboardScreen(props) {
   const [transferConfOptions, setTransferConfOptions] = useState('All');
   const [paidBackOptions, setPaidBackOptions] = useState('All');
   const [fundsOptions, setFundsOptions] = useState('All');
+  const [OGOptions, setOGOptions] = useState('All');
   
   const handleFilterData = (params) => {
     const newInitData = initData;
@@ -92,6 +100,7 @@ function DashboardScreen(props) {
       transfer: transferConfOptions,
       paidBack: paidBackOptions,
       funds: fundsOptions,
+      OG: OGOptions,
     }
     switch (type) {
       case 'STATUS':
@@ -139,6 +148,15 @@ function DashboardScreen(props) {
         }
         handleFilterData(paramsFilter5);
         break;
+      case 'OG':
+        const labelOG = listOGOptions.find(item => item.value === value).label;
+        setOGOptions(labelOG);
+        const paramsFilter6 = {
+          ...initParams,
+          OG: labelOG,
+        }
+        handleFilterData(paramsFilter6);
+        break;
       default:
         break;
     }
@@ -159,6 +177,7 @@ function DashboardScreen(props) {
       paidBackOptions={paidBackOptions}
       fundsOptions={fundsOptions}
       history={history}
+      listOGOptions={listOGOptions}
     />
   )
 }
