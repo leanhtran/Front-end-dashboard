@@ -8,6 +8,7 @@ import {
 } from 'react-bootstrap'
 import ExportExel from '../common/ExportExel';
 import KYCCellComponent from './KYCCellComponent';
+import HeaderComponent from '../common/HeaderComponent';
 
 function DashboardComponent(props) {
   const {
@@ -49,9 +50,7 @@ function DashboardComponent(props) {
 
   return (
     <div className="dashboard-container">
-      <div className="header-dashboard position-fixed">
-        <h2 className="mt-3">Dashboard</h2>
-      </div>
+      <HeaderComponent history={history} />
       <div className="container-fluid dashboard-table">
         <div className="mb-3 mt-2">
           <ExportExel fileName='Dashboard' data={data}>
